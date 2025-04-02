@@ -3,13 +3,14 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import { apiRequest } from "@/utils/functions";
 import { User } from "@/utils/interfaces";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 
 const Page: React.FC = () => {
   const [doctors, setDoctors] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
+  const router = useRouter()
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -49,7 +50,7 @@ const Page: React.FC = () => {
     {
       name: "Actions",
       cell: (row: User) =>  <div>
-      <div className="px-2 py-1 bg-green-400 text-white cursor-pointer">Verify</div>
+      <div className="px-2 py-1 bg-green-400 text-white cursor-pointer" onClick={() => router.push(`/doctors/${row.userID}`)}>View</div>
     </div>
     }
   ];
