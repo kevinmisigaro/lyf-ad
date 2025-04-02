@@ -51,46 +51,54 @@ function Page() {
             Back
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow mt-6">
-          <label className="block font-medium">First Name</label>
-          <input
-            type="text"
-            value={doctor?.firstName || ""}
-            readOnly
-            className="w-full border rounded px-3 py-2 mb-4 text-gray-600"
-          />
+        <div className="bg-white p-6 rounded-lg shadow mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label className="block font-medium">First Name</label>
+            <input
+              type="text"
+              value={doctor?.firstName || ""}
+              readOnly
+              className="w-full border rounded px-3 py-2 mb-4 text-gray-600"
+            />
+          </div>
+          <div>
+            <label className="block font-medium">Last Name</label>
+            <input
+              type="text"
+              value={doctor?.lastName || ""}
+              readOnly
+              className="w-full border rounded px-3 py-2 mb-4 text-gray-600"
+            />
+          </div>
 
-          <label className="block font-medium">Last Name</label>
-          <input
-            type="text"
-            value={doctor?.lastName || ""}
-            readOnly
-            className="w-full border rounded px-3 py-2 mb-4 text-gray-600"
-          />
+          <div>
+            <label className="block font-medium">Email</label>
+            <input
+              type="text"
+              value={doctor?.email || ""}
+              readOnly
+              className="w-full border rounded px-3 py-2 mb-4 text-gray-600"
+            />
+          </div>
 
-          <label className="block font-medium">Email</label>
-          <input
-            type="text"
-            value={doctor?.email || ""}
-            readOnly
-            className="w-full border rounded px-3 py-2 mb-4 text-gray-600"
-          />
-
-          <label className="block font-medium">Phone</label>
-          <input
-            type="text"
-            value={doctor?.phone || ""}
-            readOnly
-            className="w-full border rounded px-3 py-2 mb-4 text-gray-600"
-          />
-
-          <label className="block font-medium">Verification Status</label>
-          <input
-            type="text"
-            value={doctor?.doctorsIDverificationStatus || ""}
-            readOnly
-            className="w-full border rounded px-3 py-2 text-gray-600"
-          />
+          <div>
+            <label className="block font-medium">Phone</label>
+            <input
+              type="text"
+              value={doctor?.phone || ""}
+              readOnly
+              className="w-full border rounded px-3 py-2 mb-4 text-gray-600"
+            />
+          </div>
+          <div>
+            <label className="block font-medium">Verification Status</label>
+            <input
+              type="text"
+              value={doctor?.doctorsIDverificationStatus || ""}
+              readOnly
+              className="w-full border rounded px-3 py-2 text-gray-600"
+            />
+          </div>
         </div>
       </div>
     </DashboardLayout>
