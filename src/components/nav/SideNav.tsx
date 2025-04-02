@@ -10,6 +10,7 @@ function SideNav() {
         <li className="mb-2"><a href="/patients" className="block p-2 hover:bg-[#1d8b47] rounded">Patients</a></li>
         <li className="mb-2"><a href="/doctors" className="block p-2 hover:bg-[#1d8b47] rounded">Doctors</a></li>
         <li className="mb-2"><a href="/hospitals" className="block p-2 hover:bg-[#1d8b47] rounded">Hospitals</a></li>
+        <li className="mb-2"><a href="/specializations" className="block p-2 hover:bg-[#1d8b47] rounded">Specializations</a></li>
       </ul>
     </nav>
   </aside>

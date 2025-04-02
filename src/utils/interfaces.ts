@@ -38,3 +38,10 @@ export interface Hospital {
     verificationStatus: string | null;
   }
   
+  export interface Specialization {
+    specializationID: number;
+    specializationName: string;
+    additionDate: Date;
+    specializationIcon: string;
+    specializationName_sw: string;
+}
