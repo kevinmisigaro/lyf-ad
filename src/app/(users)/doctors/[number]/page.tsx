@@ -13,39 +13,41 @@ function Page() {
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  const verifyDoctor = async () => {
+  const fetchData = async () => {
     try {
       setLoading(true);
       const response = await apiRequest<User>({
         method: "POST",
-        url: `/admin/verifydoc/${params.number}`,
+        url: `/admin/getUser/${params.number}`,
       });
       console.log(response);
+      setDoctor(response);
     } catch (error) {
       console.error("Error fetching doctor data:", error);
     } finally {
       setLoading(false);
     }
-  }
+  };
+
+  const verifyDoctor = async () => {
+    try {
+      setLoading(true);
+      const response = await apiRequest<User>({
+        method: "GET",
+        url: `/admin/verifydoc/${doctor?.userID}`,
+      });
+      if(response){
+        fetchData();
+      }
+    } catch (error) {
+      console.error("Error fetching doctor data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (!params || !params.number) return;
-
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await apiRequest<User>({
-          method: "POST",
-          url: `/admin/getUser/${params.number}`,
-        });
-
-        setDoctor(response);
-      } catch (error) {
-        console.error("Error fetching doctor data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
     fetchData();
   }, [params.number]); // ✅ Ensure it runs when params.number changes
@@ -53,7 +55,9 @@ function Page() {
   return (
     <DashboardLayout>
       <div className="p-8">
-        {loading ? <Loader />: (
+        {loading ? (
+          <Loader />
+        ) : (
           <>
             <div className="flex justify-between">
               <h2 className="font-bold text-2xl">
@@ -122,9 +126,15 @@ function Page() {
             <div className="bg-white p-6 rounded-lg shadow-md mt-6 grid grid-cols-1 md:grid-cols-3 gap-5">
               <div
                 onClick={verifyDoctor}
-                className="bg-green-500 text-white rounded-md px-6 py-2 max-w-fit cursor-pointer"
+                className={`${
+                  doctor?.doctorsIDverificationStatus == "Not Verified"
+                    ? "bg-green-500"
+                    : "bg-red-500"
+                } text-white rounded-md px-6 py-2 max-w-fit cursor-pointer`}
               >
-                Verify
+                {doctor?.doctorsIDverificationStatus == "Not Verified"
+                  ? "Verify"
+                  : "Unverify"}
               </div>
             </div>
           </>
