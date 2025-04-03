@@ -50,7 +50,10 @@ const Page: React.FC = () => {
     {
       name: "Actions",
       cell: (row: User) =>  <div>
-      <div className="px-2 py-1 bg-green-400 text-white cursor-pointer" onClick={() => router.push(`/doctors/${row.userID}`)}>View</div>
+      <a className="px-2 py-1 bg-green-400 text-white cursor-pointer" onClick={() => {
+        router.push(`/doctors/${row.userID}`)
+        console.log('clicked');
+      }}>View</a>
     </div>
     }
   ];
