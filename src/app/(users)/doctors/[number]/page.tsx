@@ -4,6 +4,7 @@ import DashboardLayout from "@/components/layouts/DashboardLayout";
 import Loader from "@/components/loader";
 import { apiRequest } from "@/utils/functions";
 import { User } from "@/utils/interfaces";
+import moment from "moment";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -32,7 +33,7 @@ function Page() {
   const verifyDoctor = async () => {
     try {
       setLoading(true);
-      const response = await apiRequest<User>({
+      const response = await apiRequest({
         method: "GET",
         url: `/admin/verifydoc/${doctor?.userID}`,
       });
@@ -41,8 +42,7 @@ function Page() {
       }
     } catch (error) {
       console.error("Error fetching doctor data:", error);
-    } finally {
-      setLoading(false);
+      setLoading(false)
     }
   };
 
@@ -118,6 +118,42 @@ function Page() {
                 <input
                   type="text"
                   value={doctor?.doctorsIDverificationStatus || ""}
+                  readOnly
+                  className="w-full border rounded px-3 py-2 text-gray-600"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Last time online</label>
+                <input
+                  type="text"
+                  value={moment(doctor?.lastOnlineTime).format("DD-MM-Y H:mm") || ""}
+                  readOnly
+                  className="w-full border rounded px-3 py-2 text-gray-600"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Country</label>
+                <input
+                  type="text"
+                  value={doctor?.country || ""}
+                  readOnly
+                  className="w-full border rounded px-3 py-2 text-gray-600"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Call fee</label>
+                <input
+                  type="text"
+                  value={doctor?.call_fee || ""}
+                  readOnly
+                  className="w-full border rounded px-3 py-2 text-gray-600"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Consultation fee</label>
+                <input
+                  type="text"
+                  value={doctor?.consultation_fee || ""}
                   readOnly
                   className="w-full border rounded px-3 py-2 text-gray-600"
                 />

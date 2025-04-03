@@ -40,7 +40,10 @@ function Page() {
   return (
     <DashboardLayout>
       <div className="p-8">
-        <h2 className="font-bold text-2xl mb-5">Hospitals</h2>
+        <div className="flex w-full justify-between mb-5">
+          <h2 className="font-bold text-2xl">Hospitals</h2>
+          <a href="/hospitals/new" className="px-8 py-2 bg-blue-500 text-white rounded-md">New</a>
+        </div>
         <DataTable columns={columns} data={hospitals} pagination />
       </div>
     </DashboardLayout>
